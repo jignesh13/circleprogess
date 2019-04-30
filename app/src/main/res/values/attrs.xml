@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyCustomView">
+        <attr name="roundcorner" format="boolean"/>
+        <attr name="circlebackgroundcolor" format="color"/>
+        <attr name="startcolor" format="color"/>
+        <attr name="endcolor" format="color"/>
+        <attr name="progess" format="integer"/>
+        <attr name="circlestrokewidth" format="dimension"/>
+    </declare-styleable>
+
+</resources>
