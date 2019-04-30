@@ -12,6 +12,7 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 
 /**
  * Simple single android view component that can be used to showing a round progress bar.
@@ -41,7 +42,7 @@ public class CircularProgressBar extends View {
     private int cirlebackcolor;
     private int centerX, centerY, radius;
     private int startcolor,endcolor;
-
+    private TextView textView;
     public CircularProgressBar(Context context) {
         this(context, null);
     }
@@ -55,7 +56,9 @@ public class CircularProgressBar extends View {
         mStrokeWidth=ta.getDimension(R.styleable.MyCustomView_circlestrokewidth,22);
         startcolor=ta.getColor(R.styleable.MyCustomView_startcolor,Color.RED);
         endcolor=ta.getColor(R.styleable.MyCustomView_endcolor,Color.BLUE);
-        int currentprogess=ta.getInt(R.styleable.MyCustomView_progess,0);
+        currentprogess=ta.getInt(R.styleable.MyCustomView_progess,0);
+        if (textView!=null)textView.setText(currentprogess+"");
+
         mSweepAngle=calcSweepAngleFromProgress(currentprogess);
         ta.recycle();
     }
@@ -72,7 +75,9 @@ public class CircularProgressBar extends View {
         mStrokeWidth=ta.getDimension(R.styleable.MyCustomView_circlestrokewidth,22);
         startcolor=ta.getColor(R.styleable.MyCustomView_startcolor,Color.RED);
         endcolor=ta.getColor(R.styleable.MyCustomView_endcolor,Color.BLUE);
-        int currentprogess=ta.getInt(R.styleable.MyCustomView_progess,0);
+        currentprogess=ta.getInt(R.styleable.MyCustomView_progess,0);
+        if (textView!=null)textView.setText(currentprogess+"");
+
         mSweepAngle=calcSweepAngleFromProgress(currentprogess);
         ta.recycle();
 
@@ -104,7 +109,9 @@ public class CircularProgressBar extends View {
             //drawText(canvas);
         }
     }
-
+public void setTextView(TextView textView){
+    this.textView=textView;
+}
     private void initMeasurments() {
         mViewWidth = getMeasuredWidth();
         mViewHeight = getMeasuredHeight();
@@ -125,7 +132,6 @@ public class CircularProgressBar extends View {
             float endRight = endBottom;
             mRect = new RectF(startTop, startLeft, endRight, endBottom);
         }
-
 
         final LinearGradient linearGradient = new LinearGradient(0, 0, 0, (float) (getMeasuredHeight()), startcolor, endcolor, Shader.TileMode.MIRROR);
         mPaint.setShader(linearGradient);
@@ -174,6 +180,8 @@ public class CircularProgressBar extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 mSweepAngle = (float) valueAnimator.getAnimatedValue();
+                if (textView!=null)textView.setText(calcProgressFromSweepAngle(mSweepAngle)+"");
+
                 invalidate();
             }
         });
