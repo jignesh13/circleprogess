@@ -18,7 +18,7 @@ circular progessbar with gradient color
         app:layout_constraintTop_toTopOf="parent"
         app:progess="40"
         app:roundcorner="true"
-        app:startcolor="@color/colorPrimaryDark" /&gt;
+        app:startcolor="@color/colorPrimaryDark">
 ```
   
 ##  Developer
