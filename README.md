@@ -19,7 +19,7 @@ circular progessbar with gradient color
         app:startcolor="@color/colorPrimaryDark" /&gt;
   </pre>
   
-  #LICENCE
+  ## LICENCE
    Copyright 2019 jignesh khunt
 
    Licensed under the Apache License, Version 2.0 (the "License");
